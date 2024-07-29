@@ -22,9 +22,9 @@ class NewsArticleWidget extends StatelessWidget {
   Future<void> _launchUrl() async {
     final Uri urlSource = Uri.parse(url);
     if (await launchUrl(urlSource, mode: LaunchMode.externalApplication)) {
-      // url launches in the if condition itself; don't launch the same url second time here
+      // url is being launched in the condition check directly. no need to launch again here
     } else {
-      throw 'Could could not launch $url';
+      throw 'Could not launch $url';
     }
   }
 
@@ -78,13 +78,24 @@ class NewsArticleWidget extends StatelessWidget {
                 height: 80.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: urlToImage != null && urlToImage!.isNotEmpty
-                        ? NetworkImage(urlToImage!)
-                        : const AssetImage('assets/default_image.png')
-                            as ImageProvider,
-                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: urlToImage != null && urlToImage!.isNotEmpty
+                      ? Image.network(
+                          urlToImage!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/default_image.png',
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        )
+                      : Image.asset(
+                          'assets/default_image.png',
+                          fit: BoxFit.cover,
+                        ),
                 ),
               ),
             ],
@@ -94,33 +105,3 @@ class NewsArticleWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
-// import 'package:flutter/material.dart';
-
-// class NewsArticleWidget extends StatelessWidget {
-//   final String author;
-//   final String title;
-//   final String content;
-
-//   const NewsArticleWidget({
-//     super.key,
-//     required this.author,
-//     required this.title,
-//     required this.content,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         Text(title),
-//         Text('- $author'),
-//         Text(content),
-//       ],
-//     );
-//   }
-// }

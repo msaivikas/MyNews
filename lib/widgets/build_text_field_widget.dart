@@ -4,17 +4,20 @@ import 'package:tapfirst/utils/app_colors.dart';
 Widget buildTextFieldWidget(TextEditingController controller, String label,
     {bool isPassword = false}) {
   return Container(
-    decoration: const BoxDecoration(
+    decoration: BoxDecoration(
       color: AppColors.whiteColor,
+      borderRadius: BorderRadius.circular(10.0),
     ),
-    child: TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        // fillColor: Colors.green,
-        labelText: label,
-        border: const UnderlineInputBorder(),
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          border: InputBorder.none,
+        ),
+        obscureText: isPassword,
       ),
-      obscureText: isPassword,
     ),
   );
 }

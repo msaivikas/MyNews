@@ -12,6 +12,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MyApp());
 }
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => FirebaseRemoteConfigProvider()),
       ],
       child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter News App',
         home: AuthGate(),
       ),
