@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "784366388900",
+    "project_id": "bluestockpill",
+    "storage_bucket": "bluestockpill.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784366388900:android:050755c73143b72feac831",
+        "android_client_info": {
+          "package_name": "com.example.tapfirst"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLDKmMNw6lVwAbcnh56OEOdZEb3ohUWnM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
